@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\{HomeController, FrontendController, BannerController, TrustedByCompanyController, ServiceController};
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +15,55 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+/*
+|----------------------------------------------------------------------------------------
+|                                  HomeController
+|----------------------------------------------------------------------------------------
+*/
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+
+/*
+|----------------------------------------------------------------------------------------
+|                                 FrontendController
+|----------------------------------------------------------------------------------------
+*/
+Route::get('/', [FrontendController::class, 'frontpage'])->name('frontpage');
+
+
+
+/*
+|----------------------------------------------------------------------------------------
+|                                 BannerController
+|----------------------------------------------------------------------------------------
+*/
+Route::resource('banner', BannerController::class);
+
+
+
+/*
+|----------------------------------------------------------------------------------------
+|                                TrustedByCompanyController
+|----------------------------------------------------------------------------------------
+*/
+Route::resource('tbc', TrustedByCompanyController::class);
+
+
+
+/*
+|----------------------------------------------------------------------------------------
+|                                  ServiceController
+|----------------------------------------------------------------------------------------
+*/
+Route::resource('service', ServiceController::class);
