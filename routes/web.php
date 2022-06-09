@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\{HomeController, FrontendController, BannerController, TrustedByCompanyController, ServiceController};
+use App\Http\Controllers\{HomeController, FrontendController, BannerController, TrustedByCompanyController, ServiceController, TestimonialController, FaqController};
 
 /*
 |--------------------------------------------------------------------------
@@ -70,3 +70,23 @@ Route::get('/tbc/status/change', [TrustedByCompanyController::class, 'tbcStatus'
 Route::resource('service', ServiceController::class);
 Route::get('/service/status/change', [ServiceController::class, 'serviceStatus'])->name('service.status');
 Route::get('/service/details/{id}', [ServiceController::class, 'serviceDetails'])->name('service.details');
+
+
+
+/*
+|----------------------------------------------------------------------------------------
+|                                  TestimonialController
+|----------------------------------------------------------------------------------------
+*/
+Route::resource('testimonial', TestimonialController::class);
+Route::get('/testimonial/status/change', [TestimonialController::class, 'testimonialStatus'])->name('testimonial.status');
+
+
+
+/*
+|----------------------------------------------------------------------------------------
+|                                  FaqController
+|----------------------------------------------------------------------------------------
+*/
+Route::resource('faq', FaqController::class);
+Route::get('/faq/status/change', [FaqController::class, 'faqStatus'])->name('faq.status');

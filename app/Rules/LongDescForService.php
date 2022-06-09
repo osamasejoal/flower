@@ -43,6 +43,6 @@ class LongDescForService implements Rule
 */
     public function message()
     {
-        return 'Please Write the long description in 100 to 250 words.';
+        return 'Please Write between 100 to 250 words.';
     }
 }

@@ -4,14 +4,14 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class ShortDescForService implements Rule
+class QuoteForTestimonial implements Rule
 {
- 
+    
 
 
 /*
 |----------------------------------------------------------------------------------------
-|                                 __CONSTRUCT METHOD
+|                                   __CONSTRUCT METHOD
 |----------------------------------------------------------------------------------------
 */
     public function __construct()
@@ -23,12 +23,12 @@ class ShortDescForService implements Rule
 
 /*
 |----------------------------------------------------------------------------------------
-|                                      PASSES METHOD
+|                                   PASSES METHOD
 |----------------------------------------------------------------------------------------
 */
     public function passes($attribute, $value)
     {
-        if (str_word_count($value) >= 25 && str_word_count($value) <= 50) {
+        if (str_word_count($value) >= 10 && str_word_count($value) <= 40) {
             return true;
         }
         return false;
@@ -43,6 +43,6 @@ class ShortDescForService implements Rule
 */
     public function message()
     {
-        return 'Please Write between 25 to 50 words.';
+        return 'Please Write between 10 to 40 words.';
     }
 }

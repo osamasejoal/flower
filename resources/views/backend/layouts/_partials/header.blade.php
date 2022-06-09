@@ -308,6 +308,30 @@
 	            </ul>
 	        </li>
 
+            {{-- Testimonial --}}
+	        <li class="purple with-sub">
+	            <span>
+	                <i class="font-icon font-icon-award"></i>
+	                <span class="lbl">Testimonial</span>
+	            </span>
+	            <ul>
+	                <li><a href="{{route('testimonial.create')}}"><span class="lbl">Add Testimonial</span></a></li>
+	                <li><a href="{{route('testimonial.index')}}"><span class="lbl">View Testimonial</span></a></li>
+	            </ul>
+	        </li>
+
+            {{-- FAQ --}}
+	        <li class="purple with-sub">
+	            <span>
+	                <i class="font-icon font-icon-question"></i>
+	                <span class="lbl">FAQ</span>
+	            </span>
+	            <ul>
+	                <li><a href="{{route('faq.create')}}"><span class="lbl">Add FAQ</span></a></li>
+	                <li><a href="{{route('faq.index')}}"><span class="lbl">View FAQ</span></a></li>
+	            </ul>
+	        </li>
+
 
             {{-- Messages --}}
 	        {{-- <li class="purple with-sub">
