@@ -54,7 +54,7 @@
                         {{-- Short Description --}}
                         <div class="mb-3">
                             <label for="short_desc" class="form-label">Short Description *</label>
-                            <textarea name="short_desc" id="short_desc" rows="5" class="w-100" style="padding:0.375rem 0.75rem;border:solid 1px rgba(197,214,222,.7)"></textarea>
+                            <textarea name="short_desc" id="short_desc" rows="4" class="w-100" style="padding:0.375rem 0.75rem;border:solid 1px rgba(197,214,222,.7)">{{old('short_desc')}}</textarea>
 
                             @if ($errors->get('short_desc'))
                                 @error('short_desc')
@@ -68,14 +68,14 @@
                         {{-- Long Description --}}
                         <div class="mb-3">
                             <label for="long_desc" class="form-label">Long Description *</label>
-                            <textarea name="long_desc" id="long_desc" rows="10" class="w-100" style="padding:0.375rem 0.75rem;border:solid 1px rgba(197,214,222,.7)"></textarea>
+                            <textarea name="long_desc" id="long_desc" rows="10" class="w-100" style="padding:0.375rem 0.75rem;border:solid 1px rgba(197,214,222,.7)">{{old('long_desc')}}</textarea>
 
                             @if ($errors->get('long_desc'))
                                 @error('long_desc')
                                 <span class="text-danger text-center">{{ $message }}</span>
                             @enderror
                             @else
-                                <span class="text-muted">Write the long description in 100 to 200 words.</span>
+                                <span class="text-muted">Write the long description in 100 to 250 words.</span>
                             @endif
                         </div>
 

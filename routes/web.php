@@ -58,6 +58,7 @@ Route::resource('banner', BannerController::class);
 |----------------------------------------------------------------------------------------
 */
 Route::resource('tbc', TrustedByCompanyController::class);
+Route::get('/tbc/status/change', [TrustedByCompanyController::class, 'tbcStatus'])->name('tbc.status');
 
 
 
@@ -67,3 +68,5 @@ Route::resource('tbc', TrustedByCompanyController::class);
 |----------------------------------------------------------------------------------------
 */
 Route::resource('service', ServiceController::class);
+Route::get('/service/status/change', [ServiceController::class, 'serviceStatus'])->name('service.status');
+Route::get('/service/details/{id}', [ServiceController::class, 'serviceDetails'])->name('service.details');

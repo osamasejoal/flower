@@ -14,6 +14,10 @@
     <script type="text/javascript" src="{{ asset('backend/assets/js') }}/lib/lobipanel/lobipanel.min.js"></script>
     <script type="text/javascript" src="{{ asset('backend/assets/js') }}/lib/match-height/jquery.matchHeight.min.js">
     </script>
+
+    {{-- FontAwesome --}}
+    <script src="{{ asset('backend/assets') }}/css/lib/font-awesome/js/all.min.js">></script>
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
         $(document).ready(function() {
@@ -123,6 +127,11 @@
         });
     </script>
     <script src="{{ asset('backend/assets') }}/js/app.js"></script>
+
+    {{-- Bootstrap toggle --}}
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+    @yield('script-content')
 </body>
 
 </html>

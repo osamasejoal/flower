@@ -10,7 +10,7 @@ use Illuminate\Support\Carbon;
 
 class TrustedByCompanyController extends Controller
 {
-    
+
 
 
 
@@ -24,6 +24,24 @@ class TrustedByCompanyController extends Controller
     {
         $tbcs = TrustedByCompany::all();
         return view('backend.trusted_by_companies.view', compact('tbcs'));
+    }
+
+
+
+
+
+/*
+|----------------------------------------------------------------------------------------
+|                              TRUSTED BY COMPANIES STATUS METHOD
+|----------------------------------------------------------------------------------------
+*/
+    public function tbcStatus(Request $request)
+    {
+        $tbc = TrustedByCompany::find($request->tbc_id);
+        $tbc->status = $request->status;
+        $tbc->save();
+
+        return response()->json(['success' => 'Status change successfully.']);
     }
    
 

@@ -29,6 +29,22 @@
     <link rel="stylesheet" href="{{ asset('backend/assets') }}/css/lib/font-awesome/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('backend/assets') }}/css/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('backend/assets') }}/css/main.css">
+    
+        {{-- fontawesome --}}
+        <link rel="stylesheet" href="{{ asset('backend/assets') }}/css/lib/font-awesome/css/all.min.css">
+
+    {{-- Bootstrap toggle --}}
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+    <style>
+        .status-change-toggle .toggle{
+            max-width: 44%;
+            max-height: 44%;
+        }
+        .status-change-toggle{
+            height: 100px !important;
+        }
+    </style>
 </head>
 
 <body class="with-side-menu control-panel control-panel-compact">
@@ -288,7 +304,7 @@
 	            </span>
 	            <ul>
 	                <li><a href="{{route('service.create')}}"><span class="lbl">Add Service</span></a></li>
-	                <li><a href="#"><span class="lbl">View Service</span></a></li>
+	                <li><a href="{{route('service.index')}}"><span class="lbl">View Service</span></a></li>
 	            </ul>
 	        </li>
 

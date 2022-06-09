@@ -8,11 +8,11 @@
 
                 {{-- Page header --}}
                 <div class="col-lg-12 text-center my-2">
-                    <h2>Edit Company</h2>
+                    <h2>Edit Service</h2>
                 </div>
 
                 {{-- Form field --}}
-                <div class="col-lg-10 m-auto">
+                <div class="col-lg-10 m-auto pb-5">
 
                     {{-- Success alert --}}
                     @if (session('success'))
@@ -21,55 +21,89 @@
                         </div>
                     @endif
 
-                    {{-- Form for add Trusted By Companies Update --}}
-                    <form action="{{ route('tbc.update', $tcb->id) }}" method="POST" enctype="multipart/form-data">
+                    {{-- Form for edit services --}}
+                    <form action="{{ route('service.update', $service->id) }}" method="POST" enctype="multipart/form-data">
                         @method('put')
                         @csrf
 
-                        {{-- Company Name --}}
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Company Name *</label>
-                            <input name="name" type="text" class="form-control" id="name" value="{{$tcb->name}}">
+                        {{-- Service Name --}}
+                        <div class="mb-3 col-6 float-left pl-0">
+                            <label for="name" class="form-label">Service Name *</label>
+                            <input name="name" type="text" class="form-control" id="name" value="{{$service->name}}">
 
                             @error('name')
                                 <span class="text-danger text-center">{{ $message }}</span>
                             @enderror
                         </div>
 
-                        {{-- Company Link --}}
-                        <div class="mb-3">
-                            <label for="link" class="form-label">Company Link *</label>
-                            <input name="link" type="url" class="form-control" id="link" value="{{$tcb->link}}">
-
-                            @error('link')
-                                <span class="text-danger text-center">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-
-                        {{-- Previous Logo --}}
-                        <div class="my-5 d-flex">
-                            <label for="prelogo" class="form-label my-auto">Previous Logo</label>
-                            <img id="prelogo" src="{{asset('backend/assets/images/tbc/' . $tcb->logo)}}" alt="" class="ml-5" width="100px">
-                        </div>
-
-                        {{-- Company Logo --}}
-                        <div class="mb-5">
-                            <label for="logo" class="form-label">Company Logo *</label>
-                            <input name="logo" type="file" id="logo" value="" class="d-block">
-
-                            @if ($errors->get('logo'))
-                                @error('logo')
+                        {{-- Service Icon --}}
+                        <div class="mb-3 col-6 float-right pr-0">
+                            <label for="icon" class="form-label">Service Icon *</label>
+                            <input name="icon" type="text" class="form-control" id="icon" value="{{$service->icon}}" placeholder="e.g. fas fa-code">
+                            
+                            @if ($errors->get('icon'))
+                                @error('icon')
                                     <span class="text-danger text-center">{{ $message }}</span>
                                 @enderror
                             @else
-                                <span class="text-muted">Image should be a png file and transparent background.</span>
+                                <span class="text-muted">You can choose any icon from Font Awesome 5.</span>
+                            @endif
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        {{-- Short Description --}}
+                        <div class="mb-3">
+                            <label for="short_desc" class="form-label">Short Description *</label>
+                            <textarea name="short_desc" id="short_desc" rows="4" class="w-100" style="padding:0.375rem 0.75rem;border:solid 1px rgba(197,214,222,.7)">{{$service->short_desc}}</textarea>
+
+                            @if ($errors->get('short_desc'))
+                                @error('short_desc')
+                                    <span class="text-danger text-center">{{ $message }}</span>
+                                @enderror
+                            @else
+                                <span class="text-muted">Write the short description in 25 to 50 words.</span>
+                            @endif
+                        </div>
+
+                        {{-- Long Description --}}
+                        <div class="mb-3">
+                            <label for="long_desc" class="form-label">Long Description *</label>
+                            <textarea name="long_desc" id="long_desc" rows="10" class="w-100" style="padding:0.375rem 0.75rem;border:solid 1px rgba(197,214,222,.7)">{{$service->long_desc}}</textarea>
+
+                            @if ($errors->get('long_desc'))
+                                @error('long_desc')
+                                <span class="text-danger text-center">{{ $message }}</span>
+                            @enderror
+                            @else
+                                <span class="text-muted">Write the long description in 100 to 250 words.</span>
+                            @endif
+                        </div>
+
+                        {{-- Previous Image --}}
+                        <div class="mb-5">
+                            <label for="preimg" class="form-label">Previous Image</label>
+                            <img id="preimg" src="{{asset('backend/assets/images/service/' . $service->image)}}" alt="" width="500px">
+
+                        </div>
+
+                        {{-- Service Image --}}
+                        <div class="mb-5">
+                            <label for="image" class="form-label">Service Image *</label>
+                            <input name="image" type="file" id="image" class="d-block">
+
+                            @if ($errors->get('image'))
+                                @error('image')
+                                    <span class="text-danger text-center">{{ $message }}</span>
+                                @enderror
+                            @else
+                                <span class="text-muted">Image should be a png file.</span>
                             @endif
 
                         </div>
 
 
-                        <button type="submit" class="btn btn-lg btn-primary d-block m-auto">Update Company</button>
+                        <button type="submit" class="btn btn-lg btn-primary d-block m-auto">Update Service</button>
                     </form>
                 </div>
 
