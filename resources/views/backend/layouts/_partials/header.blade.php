@@ -276,6 +276,15 @@
                 </a>
             </li>
 
+            {{-- Messages --}}
+	        <li class="purple">
+	            <a href="{{route('view.messages')}}">
+	                <i class="font-icon font-icon-comments {{ !unread_messages()->isEmpty() ? 'active' : '' }}"></i>
+	                <span class="lbl">Messages</span>
+                    <span class="label label-custom label-pill label-danger">{{ count(unread_messages()) >= 1 ? count(unread_messages()) : '' }}</span>
+	            </a>
+	        </li>
+
             {{-- Banner --}}
             <li class="purple">
                 <a href="{{route('banner.index')}}">
@@ -332,20 +341,20 @@
 	            </ul>
 	        </li>
 
-
-            {{-- Messages --}}
-	        {{-- <li class="purple with-sub">
+            {{-- Company Info and Social --}}
+	        <li class="purple with-sub">
 	            <span>
-	                <i class="font-icon font-icon-comments active"></i>
-	                <span class="lbl">Banner</span>
+	                <i class="font-icon font-icon-build"></i>
+	                <span class="lbl">Company</span>
 	            </span>
 	            <ul>
-	                <li><a href="messenger.html"><span class="lbl">Messenger</span></a></li>
-	                <li><a href="chat.html"><span class="lbl">Messages</span><span class="label label-custom label-pill label-danger">8</span></a></li>
-	                <li><a href="chat-write.html"><span class="lbl">Write Message</span></a></li>
-	                <li><a href="chat-index.html"><span class="lbl">Select User</span></a></li>
+	                <li><a href="{{route('info.edit')}}"><span class="lbl">Info</span></a></li>
+	                <li><a href="{{route('social.index')}}"><span class="lbl">Social</span></a></li>
 	            </ul>
-	        </li> --}}
+	        </li>
+
+
+            
 
             
             {{-- Nested menu --}}

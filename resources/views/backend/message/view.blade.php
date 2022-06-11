@@ -8,7 +8,7 @@
 
                 {{-- Page header --}}
                 <div class="col-lg-12 text-center my-2">
-                    <h2>View Services</h2>
+                    <h2>View FAQ</h2>
                 </div>
 
 
@@ -28,45 +28,35 @@
                     <table class="table table-striped text-center">
                         <thead>
                             <tr>
-                                <th>Service Name</th>
-                                <th>Service Icon</th>
-                                <th>Image</th>
+                                <th>Question</th>
+                                <th>Answer</th>
                                 <th>status</th>
                                 <th>Action</th>
-                                <th>Details</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($services as $service)
+                            @forelse ($faqs as $faq)
                                 <tr>
-                                    {{-- Service Name --}}
-                                    <td style="font-size:22px;font-weight:600">{{ $service->name }}</td>
+                                    {{-- FAQ Question --}}
+                                    <td class="col-2">{{$faq->question}}</td>
 
-                                    {{-- Service Icon --}}
-                                    <td style="font-size:30px">
-                                        <i class="{{$service->icon}}"></i>
-                                    </td>
+                                    {{-- FAQ Answer --}}
+                                    <td class="col-6">{{$faq->answer}}</td>
 
-                                    {{-- Service Image --}}
-                                    <td>
-                                        <img src="{{ asset('backend/assets/images/service' . '/' . $service->image) }}" alt=""
-                                            width="100px">
-                                    </td>
-
-                                    {{-- Service Status --}}
+                                    {{-- FAQ Status --}}
                                     <td class="status-change-toggle">
-                                        <input data-id="{{$service->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
-                                        data-toggle="toggle" data-on="Enable" data-off="Disable" data-size="mini" {{ $service->status == 1 ? 'checked' : '' }}>
+                                        <input data-id="{{$faq->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
+                                        data-toggle="toggle" data-on="Enable" data-off="Disable" data-size="mini" {{ $faq->status == 1 ? 'checked' : '' }}>
                                     </td>
 
-                                    {{-- Service Action --}}
+                                    {{-- Action --}}
                                     <td>
-                                        <a href="{{ route('service.edit', $service->id) }}" class="mr-3"
+                                        <a href="{{ route('faq.edit', $faq->id) }}" class="mr-3"
                                             style="font-size:30px;border-bottom:0;">
                                             <abbr title="Edit" style="text-decoration:none;"><i
                                                     class="font-icon font-icon-pencil"></i></abbr>
                                         </a>
-                                        <form class="d-inline" action="{{ route('service.destroy', $service->id) }}"
+                                        <form class="d-inline" action="{{ route('faq.destroy', $faq->id) }}"
                                             method="POST">
                                             @csrf
                                             @method('delete')
@@ -77,14 +67,10 @@
                                         </form>
                                     </td>
 
-                                    {{-- Service Detail --}}
-                                    <td>
-                                        <a href="{{route('service.details', $service->id)}}" class="btn btn-info btn-sm">view details</a>
-                                    </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="10" class="text-danger text-center">There are no Service in this List.</td>
+                                    <td colspan="10" class="text-danger text-center">There are no FAQ.</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -110,14 +96,14 @@
     <script>
         $('document').ready(function(){
             $('.toggle-class').change(function(){
-                var status      = $(this).prop('checked') == true ? 1 : 0;
-                var service_id  = $(this).data('id');
+                var status = $(this).prop('checked') == true ? 1 : 0;
+                var faq_id = $(this).data('id');
 
                 $.ajax({
                     type: "get",
                     datatype: "json",
-                    url: '/service/status/change',
-                    data: {'status': status, 'service_id': service_id},
+                    url: '/faq/status/change',
+                    data: {'status': status, 'faq_id': faq_id},
                     success: function(data){
                         console.log(data.success);
                         $('#status-success').addClass('d-block');

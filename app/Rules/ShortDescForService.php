@@ -28,7 +28,7 @@ class ShortDescForService implements Rule
 */
     public function passes($attribute, $value)
     {
-        if (str_word_count($value) >= 25 && str_word_count($value) <= 50) {
+        if (str_word_count($value) >= 20 && str_word_count($value) <= 45) {
             return true;
         }
         return false;
@@ -43,6 +43,6 @@ class ShortDescForService implements Rule
 */
     public function message()
     {
-        return 'Please Write between 25 to 50 words.';
+        return 'Please Write between 20 to 45 words.';
     }
 }

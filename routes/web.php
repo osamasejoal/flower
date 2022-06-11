@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\{HomeController, FrontendController, BannerController, TrustedByCompanyController, ServiceController, TestimonialController, FaqController};
+use App\Http\Controllers\{HomeController, FrontendController, BannerController, TrustedByCompanyController, ServiceController, TestimonialController, FaqController, CompanyController, MessageController};
 
 /*
 |--------------------------------------------------------------------------
@@ -90,3 +90,29 @@ Route::get('/testimonial/status/change', [TestimonialController::class, 'testimo
 */
 Route::resource('faq', FaqController::class);
 Route::get('/faq/status/change', [FaqController::class, 'faqStatus'])->name('faq.status');
+
+
+
+/*
+|----------------------------------------------------------------------------------------
+|                                  CompanyController
+|----------------------------------------------------------------------------------------
+*/
+Route::get('/company/info/edit', [CompanyController::class, 'infoEdit'])->name('info.edit');
+Route::post('/company/info/update/{id}', [CompanyController::class, 'infoUpdate'])->name('info.update');
+
+Route::get('/company/social/index', [CompanyController::class, 'socialIndex'])->name('social.index');
+Route::get('/company/social/status', [CompanyController::class, 'socialStatus'])->name('social.status');
+Route::get('/company/social/create', [CompanyController::class, 'socialCreate'])->name('social.create');
+Route::post('/company/social/store', [CompanyController::class, 'socialStore'])->name('social.store');
+Route::post('/company/social/destroy/{id}', [CompanyController::class, 'socialDestroy'])->name('social.destroy');
+
+
+
+/*
+|----------------------------------------------------------------------------------------
+|                                  MessageController
+|----------------------------------------------------------------------------------------
+*/
+Route::post('/viewers/messages', [MessageController::class, 'viewersMessage'])->name('viewers.message');
+Route::get('/all/messages', [MessageController::class, 'viewMessages'])->name('view.messages');

@@ -8,83 +8,74 @@
 
                 {{-- Page header --}}
                 <div class="col-lg-12 text-center my-2">
-                    <h2>View Services</h2>
+                    <h2>Social Media</h2>
                 </div>
 
 
                 {{-- Table field --}}
+                <div class="col-lg-11 m-auto">
 
-                {{-- Success message --}}
-                <div class="col-lg-10 m-auto">
+                    {{-- Success message --}}
                     @if (session('success'))
                         <div class="alert alert-success text-center">
                             {{ session('success') }}
                         </div>
                     @endif
-
+                    
+                    {{-- Success for status --}}
                     <div id="status-success" class="alert alert-success text-center" hidden></div>
+
+                    {{-- Add Social Media --}}
+                    <a href="{{route('social.create')}}" class="btn btn-primary mb-2 float-right">
+                        <i class="fas fa-plus"></i> 
+                        Add Social Media
+                    </a>
 
                     {{-- Table start from here --}}
                     <table class="table table-striped text-center">
                         <thead>
                             <tr>
-                                <th>Service Name</th>
-                                <th>Service Icon</th>
-                                <th>Image</th>
+                                <th>Icon</th>
+                                <th>Link</th>
                                 <th>status</th>
                                 <th>Action</th>
-                                <th>Details</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($services as $service)
+                            @forelse ($socials as $social)
                                 <tr>
-                                    {{-- Service Name --}}
-                                    <td style="font-size:22px;font-weight:600">{{ $service->name }}</td>
 
-                                    {{-- Service Icon --}}
-                                    <td style="font-size:30px">
-                                        <i class="{{$service->icon}}"></i>
+                                    {{-- Social Media Icon --}}
+                                    <td class="" style="font-size: 40px">
+                                        <i class="{{ $social->icon }}"></i>
                                     </td>
 
-                                    {{-- Service Image --}}
-                                    <td>
-                                        <img src="{{ asset('backend/assets/images/service' . '/' . $service->image) }}" alt=""
-                                            width="100px">
+                                    {{-- Social Media Link --}}
+                                    <td class="col-5">
+                                        <a class="border-0" target="_blank" href="{{ $social->link }}">{{ $social->link }}</a>
                                     </td>
 
-                                    {{-- Service Status --}}
+                                    {{-- Client Status --}}
                                     <td class="status-change-toggle">
-                                        <input data-id="{{$service->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
-                                        data-toggle="toggle" data-on="Enable" data-off="Disable" data-size="mini" {{ $service->status == 1 ? 'checked' : '' }}>
+                                        <input data-id="{{$social->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
+                                        data-toggle="toggle" data-on="Enable" data-off="Disable" data-size="mini" {{ $social->status == 1 ? 'checked' : '' }}>
                                     </td>
 
-                                    {{-- Service Action --}}
+                                    {{-- Action --}}
                                     <td>
-                                        <a href="{{ route('service.edit', $service->id) }}" class="mr-3"
-                                            style="font-size:30px;border-bottom:0;">
-                                            <abbr title="Edit" style="text-decoration:none;"><i
-                                                    class="font-icon font-icon-pencil"></i></abbr>
-                                        </a>
-                                        <form class="d-inline" action="{{ route('service.destroy', $service->id) }}"
+                                        <form class="d-inline" action="{{ route('social.destroy', $social->id) }}"
                                             method="POST">
                                             @csrf
-                                            @method('delete')
                                             <button style="font-size:30px;border:none;background:transparent;color:#0082c6">
                                                 <abbr title="Delete" style="text-decoration:none;"><i
                                                         class="font-icon font-icon-trash"></i></abbr>
                                             </button>
                                         </form>
                                     </td>
-
-                                    {{-- Service Detail --}}
-                                    <td>
-                                        <a href="{{route('service.details', $service->id)}}" class="btn btn-info btn-sm">view details</a>
-                                    </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="10" class="text-danger text-center">There are no Service in this List.</td>
+                                    <td colspan="10" class="text-danger text-center">There are no Social Media.</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -111,13 +102,13 @@
         $('document').ready(function(){
             $('.toggle-class').change(function(){
                 var status      = $(this).prop('checked') == true ? 1 : 0;
-                var service_id  = $(this).data('id');
+                var social_id   = $(this).data('id');
 
                 $.ajax({
                     type: "get",
                     datatype: "json",
-                    url: '/service/status/change',
-                    data: {'status': status, 'service_id': service_id},
+                    url: '/company/social/status',
+                    data: {'status': status, 'social_id': social_id},
                     success: function(data){
                         console.log(data.success);
                         $('#status-success').addClass('d-block');
