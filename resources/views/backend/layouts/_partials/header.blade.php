@@ -29,21 +29,23 @@
     <link rel="stylesheet" href="{{ asset('backend/assets') }}/css/lib/font-awesome/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('backend/assets') }}/css/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('backend/assets') }}/css/main.css">
-    
-        {{-- fontawesome --}}
-        <link rel="stylesheet" href="{{ asset('backend/assets') }}/css/lib/font-awesome/css/all.min.css">
+
+    {{-- fontawesome --}}
+    <link rel="stylesheet" href="{{ asset('backend/assets') }}/css/lib/font-awesome/css/all.min.css">
 
     {{-- Bootstrap toggle --}}
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
     <style>
-        .status-change-toggle .toggle{
+        .status-change-toggle .toggle {
             max-width: 44%;
             max-height: 44%;
-        }
-        .status-change-toggle{
+        }.status-change-toggle {
             height: 100px !important;
         }
+
+        /* Style for message page */
+        .message-wrap {box-shadow: 0 0 3px #ddd;padding: 0;}.msg {padding: 5px;/*border-bottom:1px solid #ddd;*/margin: 0;}.msg-wrap {padding: 10px;max-height: 80vh;overflow: auto;}.time {color: #bfbfbf;}.msg-wrap .media-heading {color: #003bb3;font-weight: 700;}.msg-date {background: none;text-align: center;color: #aaa;border: none;box-shadow: none;border-bottom: 1px solid #ddd;}body::-webkit-scrollbar {width: 12px;}/* Let's get this party started */::-webkit-scrollbar{width: 6px;}/* Track */::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 6px rgba(0, 0, 0, 0.3);}/* Handle */::-webkit-scrollbar-thumb{background:#ddd;-webkit-box-shadow:inset 0 0 6px rgba(0, 0, 0, 0.5);}::-webkit-scrollbar-thumb:window-inactive{background:#ddd;}.msg:last-child{border-bottom: 0 !important}
     </style>
 </head>
 
@@ -277,88 +279,93 @@
             </li>
 
             {{-- Messages --}}
-	        <li class="purple">
-	            <a href="{{route('view.messages')}}">
-	                <i class="font-icon font-icon-comments {{ !unread_messages()->isEmpty() ? 'active' : '' }}"></i>
-	                <span class="lbl">Messages</span>
-                    <span class="label label-custom label-pill label-danger">{{ count(unread_messages()) >= 1 ? count(unread_messages()) : '' }}</span>
-	            </a>
-	        </li>
+            <li class="purple">
+                <a href="{{ route('view.messages') }}">
+                    <i class="font-icon font-icon-comments {{ !unread_messages()->isEmpty() ? 'active' : '' }}"></i>
+                    <span class="lbl">Messages</span>
+                    <span
+                        class="label label-custom label-pill label-danger">{{ count(unread_messages()) >= 1 ? count(unread_messages()) : '' }}</span>
+                </a>
+            </li>
 
             {{-- Banner --}}
             <li class="purple">
-                <a href="{{route('banner.index')}}">
+                <a href="{{ route('banner.index') }}">
                     <i class="font-icon font-icon-player-subtitres"></i>
                     <span class="lbl">Banner</span>
                 </a>
             </li>
 
             {{-- Trusted By Companies --}}
-	        <li class="purple with-sub">
-	            <span>
-	                <i class="font-icon font-icon-notebook-bird"></i>
-	                <span class="lbl">Trusted By Companies</span>
-	            </span>
-	            <ul>
-	                <li><a href="{{route('tbc.create')}}"><span class="lbl">Add Companies</span></a></li>
-	                <li><a href="{{route('tbc.index')}}"><span class="lbl">View Companies</span></a></li>
-	            </ul>
-	        </li>
+            <li class="purple with-sub">
+                <span>
+                    <i class="font-icon font-icon-notebook-bird"></i>
+                    <span class="lbl">Trusted By Companies</span>
+                </span>
+                <ul>
+                    <li><a href="{{ route('tbc.create') }}"><span class="lbl">Add Companies</span></a></li>
+                    <li><a href="{{ route('tbc.index') }}"><span class="lbl">View Companies</span></a></li>
+                </ul>
+            </li>
 
             {{-- Service --}}
-	        <li class="purple with-sub">
-	            <span>
-	                <i class="font-icon font-icon-widget"></i>
-	                <span class="lbl">Service</span>
-	            </span>
-	            <ul>
-	                <li><a href="{{route('service.create')}}"><span class="lbl">Add Service</span></a></li>
-	                <li><a href="{{route('service.index')}}"><span class="lbl">View Service</span></a></li>
-	            </ul>
-	        </li>
+            <li class="purple with-sub">
+                <span>
+                    <i class="font-icon font-icon-widget"></i>
+                    <span class="lbl">Service</span>
+                </span>
+                <ul>
+                    <li><a href="{{ route('service.create') }}"><span class="lbl">Add Service</span></a>
+                    </li>
+                    <li><a href="{{ route('service.index') }}"><span class="lbl">View Service</span></a>
+                    </li>
+                </ul>
+            </li>
 
             {{-- Testimonial --}}
-	        <li class="purple with-sub">
-	            <span>
-	                <i class="font-icon font-icon-award"></i>
-	                <span class="lbl">Testimonial</span>
-	            </span>
-	            <ul>
-	                <li><a href="{{route('testimonial.create')}}"><span class="lbl">Add Testimonial</span></a></li>
-	                <li><a href="{{route('testimonial.index')}}"><span class="lbl">View Testimonial</span></a></li>
-	            </ul>
-	        </li>
+            <li class="purple with-sub">
+                <span>
+                    <i class="font-icon font-icon-award"></i>
+                    <span class="lbl">Testimonial</span>
+                </span>
+                <ul>
+                    <li><a href="{{ route('testimonial.create') }}"><span class="lbl">Add
+                                Testimonial</span></a></li>
+                    <li><a href="{{ route('testimonial.index') }}"><span class="lbl">View
+                                Testimonial</span></a></li>
+                </ul>
+            </li>
 
             {{-- FAQ --}}
-	        <li class="purple with-sub">
-	            <span>
-	                <i class="font-icon font-icon-question"></i>
-	                <span class="lbl">FAQ</span>
-	            </span>
-	            <ul>
-	                <li><a href="{{route('faq.create')}}"><span class="lbl">Add FAQ</span></a></li>
-	                <li><a href="{{route('faq.index')}}"><span class="lbl">View FAQ</span></a></li>
-	            </ul>
-	        </li>
+            <li class="purple with-sub">
+                <span>
+                    <i class="font-icon font-icon-question"></i>
+                    <span class="lbl">FAQ</span>
+                </span>
+                <ul>
+                    <li><a href="{{ route('faq.create') }}"><span class="lbl">Add FAQ</span></a></li>
+                    <li><a href="{{ route('faq.index') }}"><span class="lbl">View FAQ</span></a></li>
+                </ul>
+            </li>
 
             {{-- Company Info and Social --}}
-	        <li class="purple with-sub">
-	            <span>
-	                <i class="font-icon font-icon-build"></i>
-	                <span class="lbl">Company</span>
-	            </span>
-	            <ul>
-	                <li><a href="{{route('info.edit')}}"><span class="lbl">Info</span></a></li>
-	                <li><a href="{{route('social.index')}}"><span class="lbl">Social</span></a></li>
-	            </ul>
-	        </li>
+            <li class="purple with-sub">
+                <span>
+                    <i class="font-icon font-icon-build"></i>
+                    <span class="lbl">Company</span>
+                </span>
+                <ul>
+                    <li><a href="{{ route('info.edit') }}"><span class="lbl">Info</span></a></li>
+                    <li><a href="{{ route('social.index') }}"><span class="lbl">Social</span></a></li>
+                </ul>
+            </li>
 
 
-            
 
-            
+
+
             {{-- Nested menu --}}
-	        {{-- <li class="grey with-sub">
+            {{-- <li class="grey with-sub">
 	            <span>
 	                <span class="font-icon font-icon-burger"></span>
 	                <span class="lbl">Nested Menu</span>

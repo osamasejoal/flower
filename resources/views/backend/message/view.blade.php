@@ -4,118 +4,36 @@
 @section('main-content')
     <div class="page-content">
         <div class="container-fluid">
-            <div class="row">
+            <div class="message-wrap col-lg-10 m-auto">
+                <div class="msg-wrap">
 
-                {{-- Page header --}}
-                <div class="col-lg-12 text-center my-2">
-                    <h2>View FAQ</h2>
-                </div>
+                    @foreach ($messages as $message)
+                        <div class="media msg" style="border-bottom:1px solid #ddd">
+                            <div class="media-body p-2">
 
+                                {{-- Message time --}}
+                                <small class="float-right time" style="font-size:14px">
+                                    <i class="far fa-clock"></i>
+                                    {{ $message->created_at->diffForHumans() }}
+                                </small>
 
-                {{-- Table field --}}
+                                {{-- Sender Name --}}
+                                <h5 class="media-heading mb-0" style="font-size:22px;">{{ $message->name }}</h5>
 
-                {{-- Success message --}}
-                <div class="col-lg-10 m-auto">
-                    @if (session('success'))
-                        <div class="alert alert-success text-center">
-                            {{ session('success') }}
+                                {{-- Sender Email --}}
+                                <a class="d-block mb-3" style="font-size:20px;color:#0082c6;font-weight:600">{{ $message->email }}</a>
+
+                                {{-- Messages --}}
+                                <small class="" style="font-size:18px;text-align:justify">{{ $message->message }}</small>
+
+                                {{-- <small class="" style="font-size:18px;width:98%;height:1.2rem;display:inline-block;overflow:hidden">{{ $message->message }}</small> --}}
+
+                            </div>
                         </div>
-                    @endif
+                    @endforeach
 
-                    <div id="status-success" class="alert alert-success text-center" hidden></div>
-
-                    {{-- Table start from here --}}
-                    <table class="table table-striped text-center">
-                        <thead>
-                            <tr>
-                                <th>Question</th>
-                                <th>Answer</th>
-                                <th>status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($faqs as $faq)
-                                <tr>
-                                    {{-- FAQ Question --}}
-                                    <td class="col-2">{{$faq->question}}</td>
-
-                                    {{-- FAQ Answer --}}
-                                    <td class="col-6">{{$faq->answer}}</td>
-
-                                    {{-- FAQ Status --}}
-                                    <td class="status-change-toggle">
-                                        <input data-id="{{$faq->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
-                                        data-toggle="toggle" data-on="Enable" data-off="Disable" data-size="mini" {{ $faq->status == 1 ? 'checked' : '' }}>
-                                    </td>
-
-                                    {{-- Action --}}
-                                    <td>
-                                        <a href="{{ route('faq.edit', $faq->id) }}" class="mr-3"
-                                            style="font-size:30px;border-bottom:0;">
-                                            <abbr title="Edit" style="text-decoration:none;"><i
-                                                    class="font-icon font-icon-pencil"></i></abbr>
-                                        </a>
-                                        <form class="d-inline" action="{{ route('faq.destroy', $faq->id) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('delete')
-                                            <button style="font-size:30px;border:none;background:transparent;color:#0082c6">
-                                                <abbr title="Delete" style="text-decoration:none;"><i
-                                                        class="font-icon font-icon-trash"></i></abbr>
-                                            </button>
-                                        </form>
-                                    </td>
-
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="10" class="text-danger text-center">There are no FAQ.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
                 </div>
-
-
             </div>
         </div>
     </div>
-@endsection
-
-@section('script-content')
-    <script>
-        $(function() {
-            $('#toggle-two').bootstrapToggle({
-                on: 'Enabled',
-                off: 'Disabled'
-            });
-        });
-    </script>
-
-    <script>
-        $('document').ready(function(){
-            $('.toggle-class').change(function(){
-                var status = $(this).prop('checked') == true ? 1 : 0;
-                var faq_id = $(this).data('id');
-
-                $.ajax({
-                    type: "get",
-                    datatype: "json",
-                    url: '/faq/status/change',
-                    data: {'status': status, 'faq_id': faq_id},
-                    success: function(data){
-                        console.log(data.success);
-                        $('#status-success').addClass('d-block');
-                        $('#status-success').html(data.success);
-
-                        setTimeout(function() {
-                            $('#status-success').removeClass('d-block');
-                        }, 1200);
-                        
-                    }
-                });
-            });
-        });
-    </script>
 @endsection

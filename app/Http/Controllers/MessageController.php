@@ -50,8 +50,8 @@ class MessageController extends Controller
 |----------------------------------------------------------------------------------------
 */
     public function viewMessages(){
-
-        return view('backend.message.view');
+        $messages = Message::all();
+        return view('backend.message.view', compact('messages'));
     }
 
 }
