@@ -40,6 +40,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 |----------------------------------------------------------------------------------------
 */
 Route::get('/', [FrontendController::class, 'frontpage'])->name('frontpage');
+Route::get('/service/page/{id}', [FrontendController::class, 'servicePage'])->name('service.page');
 
 
 

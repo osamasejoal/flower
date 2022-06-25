@@ -18,7 +18,7 @@ class CreateCompanyInfosTable extends Migration
             $table->string('name');
             $table->string('title');
             $table->string('doamin_name');
-            $table->string('mail');
+            $table->string('email');
             $table->text('description');
             $table->string('phone');
             $table->string('call_time')->comment('when viewers can call you');

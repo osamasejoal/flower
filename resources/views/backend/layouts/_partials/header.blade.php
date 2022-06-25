@@ -40,12 +40,75 @@
         .status-change-toggle .toggle {
             max-width: 44%;
             max-height: 44%;
-        }.status-change-toggle {
+        }
+
+        .status-change-toggle {
             height: 100px !important;
         }
 
         /* Style for message page */
-        .message-wrap {box-shadow: 0 0 3px #ddd;padding: 0;}.msg {padding: 5px;/*border-bottom:1px solid #ddd;*/margin: 0;}.msg-wrap {padding: 10px;max-height: 80vh;overflow: auto;}.time {color: #bfbfbf;}.msg-wrap .media-heading {color: #003bb3;font-weight: 700;}.msg-date {background: none;text-align: center;color: #aaa;border: none;box-shadow: none;border-bottom: 1px solid #ddd;}body::-webkit-scrollbar {width: 12px;}/* Let's get this party started */::-webkit-scrollbar{width: 6px;}/* Track */::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 6px rgba(0, 0, 0, 0.3);}/* Handle */::-webkit-scrollbar-thumb{background:#ddd;-webkit-box-shadow:inset 0 0 6px rgba(0, 0, 0, 0.5);}::-webkit-scrollbar-thumb:window-inactive{background:#ddd;}.msg:last-child{border-bottom: 0 !important}
+        .message-wrap {
+            box-shadow: 0 0 3px #ddd;
+            padding: 0;
+        }
+
+        .msg {
+            padding: 5px;
+            /*border-bottom:1px solid #ddd;*/
+            margin: 0;
+        }
+
+        .msg-wrap {
+            padding: 10px;
+            max-height: 80vh;
+            overflow: auto;
+        }
+
+        .time {
+            color: #bfbfbf;
+        }
+
+        .msg-wrap .media-heading {
+            color: #003bb3;
+            font-weight: 700;
+        }
+
+        .msg-date {
+            background: none;
+            text-align: center;
+            color: #aaa;
+            border: none;
+            box-shadow: none;
+            border-bottom: 1px solid #ddd;
+        }
+
+        body::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        /* Let's get this party started */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #ddd;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb:window-inactive {
+            background: #ddd;
+        }
+
+        .msg:last-child {
+            border-bottom: 0 !important
+        }
     </style>
 </head>
 
@@ -54,8 +117,13 @@
     <header class="site-header">
         <div class="container-fluid">
             <a href="#" class="site-logo">
-                <img class="hidden-md-down" src="{{ asset('backend/assets/img') }}/logo-2.png" alt="">
-                <img class="hidden-lg-down" src="{{ asset('backend/assets/img') }}/logo-2-mob.png" alt="">
+                {{-- <img class="hidden-md-down" src="{{ asset('backend/assets/img') }}/logo-2.png" alt=""> --}}
+                {{-- <img class="hidden-lg-down" src="{{ asset('backend/assets/img') }}/logo-2-mob.png" alt=""> --}}
+
+                <img class="hidden-md-down"
+                    src="{{ asset('backend/assets/images/company-info/' . company_info()->logo) }}" alt="">
+                {{-- {{ company_info()->phone }} --}}
+
             </a>
 
             <button id="show-hide-sidebar-toggle" class="show-hide-sidebar">
@@ -86,7 +154,8 @@
                                 <div class="dropdown-menu-notif-list">
                                     <div class="dropdown-menu-notif-item">
                                         <div class="photo">
-                                            <img src="{{ asset('backend/assets/img') }}/photo-64-1.jpg" alt="">
+                                            <img src="{{ asset('backend/assets/img') }}/photo-64-1.jpg"
+                                                alt="">
                                         </div>
                                         <div class="dot"></div>
                                         <a href="#">Morgan</a> was bothering about something
@@ -94,27 +163,32 @@
                                     </div>
                                     <div class="dropdown-menu-notif-item">
                                         <div class="photo">
-                                            <img src="{{ asset('backend/assets/img') }}/photo-64-2.jpg" alt="">
+                                            <img src="{{ asset('backend/assets/img') }}/photo-64-2.jpg"
+                                                alt="">
                                         </div>
                                         <div class="dot"></div>
-                                        <a href="#">Lioneli</a> had commented on this <a href="#">Super Important
+                                        <a href="#">Lioneli</a> had commented on this <a href="#">Super
+                                            Important
                                             Thing</a>
                                         <div class="color-blue-grey-lighter">7 hours ago</div>
                                     </div>
                                     <div class="dropdown-menu-notif-item">
                                         <div class="photo">
-                                            <img src="{{ asset('backend/assets/img') }}/photo-64-3.jpg" alt="">
+                                            <img src="{{ asset('backend/assets/img') }}/photo-64-3.jpg"
+                                                alt="">
                                         </div>
                                         <div class="dot"></div>
-                                        <a href="#">Xavier</a> had commented on the <a href="#">Movie title</a>
+                                        <a href="#">Xavier</a> had commented on the <a href="#">Movie
+                                            title</a>
                                         <div class="color-blue-grey-lighter">7 hours ago</div>
                                     </div>
                                     <div class="dropdown-menu-notif-item">
                                         <div class="photo">
-                                            <img src="{{ asset('backend/assets/img') }}/photo-64-4.jpg" alt="">
+                                            <img src="{{ asset('backend/assets/img') }}/photo-64-4.jpg"
+                                                alt="">
                                         </div>
-                                        <a href="#">Lionely</a> wants to go to <a href="#">Cinema</a> with you to see <a
-                                            href="#">This Movie</a>
+                                        <a href="#">Lionely</a> wants to go to <a href="#">Cinema</a> with
+                                        you to see <a href="#">This Movie</a>
                                         <div class="color-blue-grey-lighter">7 hours ago</div>
                                     </div>
                                 </div>
@@ -237,15 +311,38 @@
                                 <a class="dropdown-item" href="{{ route('frontpage') }}"><span style="color:grey;"
                                         class="font-icon fa fa-newspaper-o"></span>Front page</a>
 
-                                <a class="dropdown-item" href="#"><span
-                                        class="font-icon glyphicon glyphicon-user"></span>Profile</a>
-                                <a class="dropdown-item" href="#"><span
-                                        class="font-icon glyphicon glyphicon-cog"></span>Settings</a>
-                                <a class="dropdown-item" href="#"><span
-                                        class="font-icon glyphicon glyphicon-question-sign"></span>Help</a>
+                                {{-- Profile --}}
+                                <a class="dropdown-item" href="#">
+                                    <span class="font-icon glyphicon glyphicon-user"></span>
+                                    Profile
+                                </a>
+
+                                {{-- Settings --}}
+                                <a class="dropdown-item" href="#">
+                                    <span class="font-icon glyphicon glyphicon-cog"></span>
+                                    Settings
+                                </a>
+
+                                {{-- Help --}}
+                                <a class="dropdown-item" href="#">
+                                    <span class="font-icon glyphicon glyphicon-question-sign"></span>
+                                    Help
+                                </a>
+
+
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><span
-                                        class="font-icon glyphicon glyphicon-log-out"></span>Logout</a>
+
+                                {{-- Logout --}}
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                                    <span class="font-icon glyphicon glyphicon-log-out"></span>
+                                    Logout
+                                </a>
+
+                                <form id="frm-logout" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                                
                             </div>
                         </div>
 

@@ -99,6 +99,8 @@
                 <div class="row">
 
                     @if ($loop->iteration % 2 == 0)
+
+                        {{-- Service Image --}}
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4 text-start">
                             <div class="services__pic">
                                 <img src="{{ asset('backend/assets/images/service/' . $service->image) }}"
@@ -106,28 +108,52 @@
                             </div>
                         </div>
 
+                        {{-- Service Content --}}
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4">
                             <div class="services__content">
+
+                                {{-- Service Icon --}}
                                 <div class="icon d-block {{ $service->icon }}"></div>
+
+                                {{-- Service Name --}}
                                 <h3 class="display-3--title mt-1">{{ $service->name }}</h3>
+
+                                {{-- Service Short Description --}}
                                 <p class="lh-lg">{{ $service->short_desc }}</p>
-                                <button type="button" class="rounded-pill btn-rounded border-primary">Learn more
-                                    <span><i class="fas fa-arrow-right"></i></span>
-                                </button>
+
+                                {{-- Service Details Button --}}
+                                <form action="{{ route('service.page', $service->id) }}" method="get">
+                                    @csrf
+                                    <button type="submit" name="submit" class="rounded-pill btn-rounded border-primary">Learn more
+                                        <span><i class="fas fa-arrow-right"></i></span>
+                                    </button>
+                                </form>
                             </div>
                         </div>
+
                     @else
+
+                    {{-- Service Content --}}
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4">
                             <div class="services__content">
+
+                                {{-- Service Icon --}}
                                 <div class="icon d-block {{ $service->icon }}"></div>
+
+                                {{-- Service Name --}}
                                 <h3 class="display-3--title mt-1">{{ $service->name }}</h3>
+
+                                {{-- Service Short Description --}}
                                 <p class="lh-lg">{{ $service->short_desc }}</p>
-                                <button type="button" class="rounded-pill btn-rounded border-primary">Learn more
+
+                                {{-- Service Details Button --}}
+                                <button class="rounded-pill btn-rounded border-primary">Learn more
                                     <span><i class="fas fa-arrow-right"></i></span>
                                 </button>
                             </div>
                         </div>
 
+                        {{-- Service Image --}}
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4 text-end">
                             <div class="services__pic">
                                 <img src="{{ asset('backend/assets/images/service/' . $service->image) }}"

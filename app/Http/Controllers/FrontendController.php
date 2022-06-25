@@ -11,9 +11,14 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    // ===================================
-    // FRONTPAGE method for view frontpage
-    // ===================================
+
+
+
+
+    
+    // ==================================================================
+    //                        FRONTPAGE METHOD
+    // ==================================================================
     public function frontpage(){
         $banner         = Banner::firstOrFail();
         $tbcs           = TrustedByCompany::where('status', 1)->get();
@@ -23,4 +28,18 @@ class FrontendController extends Controller
 
         return view('frontend.index', compact('banner', 'tbcs', 'services', 'testimonials', 'faqs'));
     }
+
+
+
+
+
+    // ==================================================================
+    //                       SERVICE DETAILS METHOD
+    // ==================================================================
+    public function servicePage($id){
+        echo $id;
+        // $service = Service::find($id);
+        // return view('frontend.service-details');
+    }
+
 }

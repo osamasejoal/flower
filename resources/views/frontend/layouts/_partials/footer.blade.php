@@ -100,7 +100,7 @@
         <hr class="bg-white d-inline-block mb-4" style="width: 60px; height: 2px;">
         <ul class="list-inline campany-list">
           <li><a>{{ company_info()->phone }}</a></li>
-          <li><a>{{ company_info()->mail }}</a></li>
+          <li><a>{{ company_info()->email }}</a></li>
           <li><a>{{ company_info()->location }}</a></li>
         </ul>
       </div>
