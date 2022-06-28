@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\{HomeController, FrontendController, BannerController, TrustedByCompanyController, ServiceController, TestimonialController, FaqController, CompanyController, MessageController};
+use App\Http\Controllers\{HomeController, FrontendController, BannerController, TrustedByCompanyController, ServiceController, TestimonialController, FaqController, CompanyController, MessageController, PortfolioController};
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 |----------------------------------------------------------------------------------------
 */
 Route::get('/', [FrontendController::class, 'frontpage'])->name('frontpage');
-Route::get('/service/page/{id}', [FrontendController::class, 'servicePage'])->name('service.page');
+Route::post('/service/page/{id}', [FrontendController::class, 'servicePage'])->name('service.page');
 
 
 
@@ -91,6 +91,16 @@ Route::get('/testimonial/status/change', [TestimonialController::class, 'testimo
 */
 Route::resource('faq', FaqController::class);
 Route::get('/faq/status/change', [FaqController::class, 'faqStatus'])->name('faq.status');
+
+
+
+/*
+|----------------------------------------------------------------------------------------
+|                                  PortfolioController
+|----------------------------------------------------------------------------------------
+*/
+Route::resource('portfolio', PortfolioController::class);
+Route::get('/portfolio/status/change', [PortfolioController::class, 'portfolioStatus'])->name('portfolio.status');
 
 
 

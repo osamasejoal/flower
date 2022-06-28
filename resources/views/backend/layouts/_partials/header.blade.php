@@ -445,6 +445,18 @@
                 </ul>
             </li>
 
+            {{-- Portfolio --}}
+            <li class="purple with-sub">
+                <span>
+                    <i class="font-icon font-icon-case-2"></i>
+                    <span class="lbl">Portfolio</span>
+                </span>
+                <ul>
+                    <li><a href="{{ route('portfolio.create') }}"><span class="lbl">Add Project</span></a></li>
+                    <li><a href="{{ route('portfolio.index') }}"><span class="lbl">View Project</span></a></li>
+                </ul>
+            </li>
+
             {{-- Company Info and Social --}}
             <li class="purple with-sub">
                 <span>

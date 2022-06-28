@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\Faq;
+use App\Models\Portfolio;
 use App\Models\Service;
 use App\Models\Testimonial;
 use App\Models\TrustedByCompany;
@@ -25,8 +26,9 @@ class FrontendController extends Controller
         $services       = Service::where('status', 1)->get();
         $testimonials   = Testimonial::where('status', 1)->get();
         $faqs           = Faq::where('status', 1)->get();
+        $portfolios     = Portfolio::where('status', 1)->get();
 
-        return view('frontend.index', compact('banner', 'tbcs', 'services', 'testimonials', 'faqs'));
+        return view('frontend.index', compact('banner', 'tbcs', 'services', 'testimonials', 'faqs', 'portfolios'));
     }
 
 
@@ -37,9 +39,8 @@ class FrontendController extends Controller
     //                       SERVICE DETAILS METHOD
     // ==================================================================
     public function servicePage($id){
-        echo $id;
-        // $service = Service::find($id);
-        // return view('frontend.service-details');
+        $service = Service::find($id);
+        return view('frontend.service-details', compact('service'));
     }
 
 }

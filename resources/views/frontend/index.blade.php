@@ -35,8 +35,8 @@
     </section>
 
     <!-- //////////////////////////////////////////////////////////////////////////////////////////////
-                                             START SECTION 3 - THE CAMPANIES SECTION
-                ////////////////////////////////////////////////////////////////////////////////////////////////////-->
+                                                     START SECTION 3 - THE CAMPANIES SECTION
+                        ////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
     <section id="campanies" class="campanies {{ $tbcs->isEmpty() ? 'd-none' : '' }}">
         <div class="container">
@@ -63,8 +63,8 @@
     </section>
 
     <!-- //////////////////////////////////////////////////////////////////////////////////////////////
-                                         START SECTION 4 - THE SERVICES
-                ///////////////////////////////////////////////////////////////////////////////////////////////////-->
+                                                 START SECTION 4 - THE SERVICES
+                        ///////////////////////////////////////////////////////////////////////////////////////////////////-->
     <section id="services" class="services">
         <div class="container">
             <div class="row text-center">
@@ -99,7 +99,6 @@
                 <div class="row">
 
                     @if ($loop->iteration % 2 == 0)
-
                         {{-- Service Image --}}
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4 text-start">
                             <div class="services__pic">
@@ -122,18 +121,16 @@
                                 <p class="lh-lg">{{ $service->short_desc }}</p>
 
                                 {{-- Service Details Button --}}
-                                <form action="{{ route('service.page', $service->id) }}" method="get">
+                                <form action="{{ route('service.page', $service->id) }}" method="post">
                                     @csrf
-                                    <button type="submit" name="submit" class="rounded-pill btn-rounded border-primary">Learn more
+                                    <button type="submit" class="rounded-pill btn-rounded border-primary">Learn more
                                         <span><i class="fas fa-arrow-right"></i></span>
                                     </button>
                                 </form>
                             </div>
                         </div>
-
                     @else
-
-                    {{-- Service Content --}}
+                        {{-- Service Content --}}
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4">
                             <div class="services__content">
 
@@ -147,9 +144,12 @@
                                 <p class="lh-lg">{{ $service->short_desc }}</p>
 
                                 {{-- Service Details Button --}}
-                                <button class="rounded-pill btn-rounded border-primary">Learn more
-                                    <span><i class="fas fa-arrow-right"></i></span>
-                                </button>
+                                <form action="{{ route('service.page', $service->id) }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="rounded-pill btn-rounded border-primary">Learn more
+                                        <span><i class="fas fa-arrow-right"></i></span>
+                                    </button>
+                                </form>
                             </div>
                         </div>
 
@@ -169,8 +169,8 @@
     </section>
 
     <!-- ////////////////////////////////////////////////////////////////////////////////////////////////
-                                               START SECTION 5 - THE TESTIMONIALS
-                /////////////////////////////////////////////////////////////////////////////////////////////////////-->
+                                                       START SECTION 5 - THE TESTIMONIALS
+                        /////////////////////////////////////////////////////////////////////////////////////////////////////-->
     <section id="testimonials" class="testimonials">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill="#fff" fill-opacity="1"
@@ -189,26 +189,27 @@
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
 
-                      @foreach ($testimonials as $testimonial)
-                        <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
-                            <!-- testimonials card  -->
-                            <div class="testimonials__card">
-                                <p class="lh-lg mb-4" style="font-size:22px">
-                                    <i class="fas fa-quote-left"></i> {{ $testimonial->quote }} <i class="fas fa-quote-right"></i>
-                                </p>
+                        @foreach ($testimonials as $testimonial)
+                            <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
+                                <!-- testimonials card  -->
+                                <div class="testimonials__card">
+                                    <p class="lh-lg mb-4" style="font-size:22px">
+                                        <i class="fas fa-quote-left"></i> {{ $testimonial->quote }} <i
+                                            class="fas fa-quote-right"></i>
+                                    </p>
+                                </div>
+                                <!-- client picture  -->
+                                <div class="testimonials__picture">
+                                    <img src="{{ asset('backend/assets/images/testimonial/' . $testimonial->image) }}"
+                                        alt="client-1 picture" class="rounded-circle img-fluid">
+                                </div>
+                                <!-- client name & role  -->
+                                <div class="testimonials__name">
+                                    <h3>{{ $testimonial->name }}</h3>
+                                    <p class="fw-light">{{ $testimonial->profession }}</p>
+                                </div>
                             </div>
-                            <!-- client picture  -->
-                            <div class="testimonials__picture">
-                                <img src="{{asset('backend/assets/images/testimonial/' . $testimonial->image)}}"
-                                    alt="client-1 picture" class="rounded-circle img-fluid">
-                            </div>
-                            <!-- client name & role  -->
-                            <div class="testimonials__name">
-                                <h3>{{ $testimonial->name }}</h3>
-                                <p class="fw-light">{{ $testimonial->profession }}</p>
-                            </div>
-                        </div>
-                      @endforeach
+                        @endforeach
 
                     </div>
                     <div class="text-center">
@@ -230,8 +231,8 @@
     </section>
 
     <!-- /////////////////////////////////////////////////////////////////////////////////////////////////
-                                       START SECTION 6 - THE FAQ
-                //////////////////////////////////////////////////////////////////////////////////////////////////////-->
+                                               START SECTION 6 - THE FAQ
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////-->
     <section id="faq" class="faq">
         <div class="container">
             <div class="row text-center">
@@ -245,18 +246,19 @@
                     <div class="accordion" id="accordionExample">
                         <!-- ACCORDION ITEM -->
                         @foreach ($faqs as $index => $faq)
-                          <div class="accordion-item shadow mb-3">
-                              <h2 class="accordion-header" id="headingOne">
-                                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                      data-bs-target="#collapse-{{ $index }}" aria-expanded="true" aria-controls="collapse-{{ $index }}">
-                                      {{ $faq->question }}
-                                  </button>
-                              </h2>
-                              <div id="collapse-{{ $index }}" class="accordion-collapse collapse show" aria-labelledby="heading-{{ $index }}"
-                                  data-bs-parent="#accordionExample">
-                                  <div class="accordion-body">{{ $faq->answer }}</div>
-                              </div>
-                          </div>
+                            <div class="accordion-item shadow mb-3">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse-{{ $index }}" aria-expanded="true"
+                                        aria-controls="collapse-{{ $index }}">
+                                        {{ $faq->question }}
+                                    </button>
+                                </h2>
+                                <div id="collapse-{{ $index }}" class="accordion-collapse collapse show"
+                                    aria-labelledby="heading-{{ $index }}" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">{{ $faq->answer }}</div>
+                                </div>
+                            </div>
                         @endforeach
 
                     </div>
@@ -266,8 +268,8 @@
     </section>
 
     <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////
-                                              START SECTION 7 - THE PORTFOLIO
-                //////////////////////////////////////////////////////////////////////////////////////////////////////-->
+                                                      START SECTION 7 - THE PORTFOLIO
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
     <section id="portfolio" class="portfolio">
         <div class="container">
@@ -279,132 +281,50 @@
                 </p>
             </div>
             <!-- FILTER BUTTONS  -->
-            <div class="row mt-5 mb-4 g-3 text-center">
+            {{-- <div class="row mt-5 mb-4 g-3 text-center">
                 <div class="col-md-12">
                     <button class="btn btn-outline-primary" type="button">All</button>
                     <button class="btn btn-outline-primary" type="button">websites</button>
                     <button class="btn btn-outline-primary" type="button">design</button>
                     <button class="btn btn-outline-primary" type="button">mockup</button>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- START THE PORTFOLIO ITEMS  -->
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="portfolio-box shadow">
-                        <img src="{{ asset('frontend/images') }}/portfolio/portfolio-1.jpg" alt="portfolio 1 image"
-                            title="portfolio 1 picture" class="img-fluid">
-                        <div class="portfolio-info">
-                            <div class="caption">
-                                <h4>project name goes here 1</h4>
-                                <p>category project</p>
-                            </div>
+            <div class="row mt-5">
+                @foreach ($portfolios as $portfolio)
+                    <div class="col-lg-4 col-md-6">
+                        <div class="portfolio-box shadow">
+
+                            {{-- Portfolio Link --}}
+                            <a href="{{ $portfolio->link }}" target="_blank">
+
+                                {{-- Portfolio Image --}}
+                                <img src="{{ asset('backend/assets/images/portfolio/' . $portfolio->image) }}"
+                                    title="portfolio picture" class="img-fluid">
+
+                                <div class="portfolio-info">
+                                    <div class="caption">
+
+                                        {{-- Portfolio Name --}}
+                                        <h4>{{ $portfolio->name }}</h4>
+
+                                        {{-- Portfolio Type --}}
+                                        <p>{{ $portfolio->type }}</p>
+                                    </div>
+                                </div>
+                            </a>
+
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="portfolio-box shadow">
-                        <img src="{{ asset('frontend/images') }}/portfolio/portfolio-2.jpg" alt="portfolio 2 image"
-                            title="portfolio 2 picture" class="img-fluid">
-                        <div class="portfolio-info">
-                            <div class="caption">
-                                <h4>project name goes here 2</h4>
-                                <p>category project</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="portfolio-box shadow">
-                        <img src="{{ asset('frontend/images') }}/portfolio/portfolio-3.jpg" alt="portfolio 3 image"
-                            title="portfolio 3 picture" class="img-fluid">
-                        <div class="portfolio-info">
-                            <div class="caption">
-                                <h4>project name goes here 3</h4>
-                                <p>category project</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="portfolio-box shadow">
-                        <img src="{{ asset('frontend/images') }}/portfolio/portfolio-4.jpg" alt="portfolio 4 image"
-                            title="portfolio 4 picture" class="img-fluid">
-                        <div class="portfolio-info">
-                            <div class="caption">
-                                <h4>project name goes here 4</h4>
-                                <p>category project</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="portfolio-box shadow">
-                        <img src="{{ asset('frontend/images') }}/portfolio/portfolio-5.jpg" alt="portfolio 5 image"
-                            title="portfolio 5 picture" class="img-fluid">
-                        <div class="portfolio-info">
-                            <div class="caption">
-                                <h4>project name goes here 5</h4>
-                                <p>category project</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="portfolio-box shadow">
-                        <img src="{{ asset('frontend/images') }}/portfolio/portfolio-6.jpg" alt="portfolio 6 image"
-                            title="portfolio 6 picture" class="img-fluid">
-                        <div class="portfolio-info">
-                            <div class="caption">
-                                <h4>project name goes here 6</h4>
-                                <p>category project</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="portfolio-box shadow">
-                        <img src="{{ asset('frontend/images') }}/portfolio/portfolio-7.jpg" alt="portfolio 7 image"
-                            title="portfolio 7 picture" class="img-fluid">
-                        <div class="portfolio-info">
-                            <div class="caption">
-                                <h4>project name goes here 7</h4>
-                                <p>category project</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="portfolio-box shadow">
-                        <img src="{{ asset('frontend/images') }}/portfolio/portfolio-8.jpg" alt="portfolio 8 image"
-                            title="portfolio 8 picture" class="img-fluid">
-                        <div class="portfolio-info">
-                            <div class="caption">
-                                <h4>project name goes here 8</h4>
-                                <p>category project</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="portfolio-box shadow">
-                        <img src="{{ asset('frontend/images') }}/portfolio/portfolio-9.jpg" alt="portfolio 9 image"
-                            title="portfolio 9 picture" class="img-fluid">
-                        <div class="portfolio-info">
-                            <div class="caption">
-                                <h4>project name goes here 9</h4>
-                                <p>category project</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
 
     <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////
-                              START SECTION 8 - GET STARTED
-                /////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+                                      START SECTION 8 - GET STARTED
+                        /////////////////////////////////////////////////////////////////////////////////////////////////////////-->
     <section id="contact" class="get-started">
         <div class="container">
             <div class="row text-center">
@@ -441,17 +361,17 @@
                         @if (session('success'))
                             <div class="alert alert-success text-center">{{ session('success') }}</div>
                         @endif
-                        
-                        <form action="{{route('viewers.message')}}" method="POST" class="row">
-                          @csrf
+
+                        <form action="{{ route('viewers.message') }}" method="POST" class="row">
+                            @csrf
 
                             {{-- Viewers Name --}}
                             <div class="col-lg-12 col-md mb-3">
                                 <input name="name" type="text" placeholder="Your Name" id="inputFirstName"
                                     class="shadow form-control form-control-lg">
 
-                                @error('name')  
-                                  <span class="text-danger">{{$message}}</span>
+                                @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
 
@@ -460,17 +380,18 @@
                                 <input name="email" type="email" placeholder="email address" id="inputEmail"
                                     class="shadow form-control form-control-lg">
 
-                                @error('email')  
-                                  <span class="text-danger">{{$message}}</span>
+                                @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
 
                             {{-- Viewers Message --}}
                             <div class="col-lg-12 mb-3">
-                                <textarea name="message" placeholder="message" id="message" rows="8" class="shadow form-control form-control-lg"></textarea>
+                                <textarea name="message" placeholder="message" id="message" rows="8"
+                                    class="shadow form-control form-control-lg"></textarea>
 
-                                @error('message')  
-                                  <span class="text-danger">{{$message}}</span>
+                                @error('message')
+                                    <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
 
